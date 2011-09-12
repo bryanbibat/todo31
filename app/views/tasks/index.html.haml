@@ -1,0 +1,20 @@
+%h1 Task List
+
+= form_for @task do |f|
+  .fields
+    = f.text_field :task
+    = f.select :level, Task.level_dropdown, :promnpt => true
+    = f.submit
+
+
+.newlevel
+  - @tasks.each do |task|
+    .entry{ :class => task.level_class }
+      .task-text{ title: task.tooltip }
+        = task.task
+        %span.time
+          = time_ago_in_words task.created_at
+          ago
+      .task-actions
+        = link_to "x", complete_task_path(task), method: :put, title: "Mark as Completed"
+

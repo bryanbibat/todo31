@@ -1,0 +1,70 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.content {
+  padding: 10px;
+}
+
+.newlevel {
+  margin-left: 20px;
+}
+
+.entry {
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: #fff;
+  text-shadow: 0px 1px 1px #000;
+  font-weight: bold;
+  overflow: auto;
+  .task-text {
+    float: left;
+    .time {
+      font-weight: normal;
+      font-style: italic;
+    }
+  }
+  .task-actions {
+    float: right;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+$epic: #ec3e40;
+$quest: #ff9b2b;
+$task: #f5d800;
+$objective: #377fc7;
+$action: #01a46d;
+
+@mixin gradient($col) {
+  $colstop: $col - #222;
+  background: $col; /* old browsers */
+  background: -moz-linear-gradient(top, $col 0%, $colstop 100%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$col), color-stop(100%,$colstop)); /* webkit */
+  -box-shadow: 0 1px 3px  rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.epic {
+  @include gradient($epic);
+}
+
+.quest {
+  @include gradient($quest);
+}
+
+.task {
+  @include gradient($task);
+}
+
+.objective {
+  @include gradient($objective);
+}
+
+.action {
+  @include gradient($action);
+}
+
