@@ -8,7 +8,7 @@
     .task-actions
       - unless task.is_action?
         = link_to "+", "#", class: "display-form", id: "form-#{task.id}", title: "Add Subtask"
-      = link_to "x", complete_task_path(task), method: :put, title: "Mark as Completed"
+      = link_to "x", complete_task_path(task), method: :put, confirm: "Are you sure?", title: "Mark as Completed"
   - unless task.is_action?
     .subtask-form{ id: "form-#{task.id}" }
       = form_for Task.new( level: task.level - 1 ) do |f|
