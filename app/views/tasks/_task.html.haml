@@ -1,0 +1,20 @@
+.newlevel
+  .entry{ :class => task.level_class }
+    .task-text{ title: task.tooltip }
+      = task.task
+      %span.time
+        = time_ago_in_words task.created_at
+        ago
+    .task-actions
+      - unless task.is_action?
+        = link_to "+", "#", class: "display-form", id: "form-#{task.id}", title: "Add Subtask"
+      = link_to "x", complete_task_path(task), method: :put, title: "Mark as Completed"
+  - unless task.is_action?
+    .subtask-form{ id: "form-#{task.id}" }
+      = form_for Task.new( level: task.level - 1 ) do |f|
+        .fields
+          = f.text_field :task
+          = f.select :level, Task.level_dropdown(task.level - 1), :promnpt => true
+          = f.hidden_field :parent_id, value: task.id
+          = f.submit
+    = render task.sub_tasks

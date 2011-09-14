@@ -7,14 +7,4 @@
     = f.submit
 
 
-.newlevel
-  - @tasks.each do |task|
-    .entry{ :class => task.level_class }
-      .task-text{ title: task.tooltip }
-        = task.task
-        %span.time
-          = time_ago_in_words task.created_at
-          ago
-      .task-actions
-        = link_to "x", complete_task_path(task), method: :put, title: "Mark as Completed"
-
+= render @tasks

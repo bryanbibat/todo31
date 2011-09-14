@@ -5,3 +5,5 @@
 
 $(document).ready ->
   $(".entry .task-text").tipsy gravity: "nw" 
+  $(".display-form").click ->
+    $("div##{$(this).attr('id')}").show()

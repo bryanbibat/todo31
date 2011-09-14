@@ -16,8 +16,8 @@ class Task < ActiveRecord::Base
     "Quests can take weeks to finsh",
     "Epics can take months to finish" ]
 
-  def self.level_dropdown
-    (1..5).map { |idx| [LevelNames[idx - 1], idx] }.reverse
+  def self.level_dropdown(max = 5)
+    (1..max).map { |idx| [LevelNames[idx - 1], idx] }.reverse
   end
 
   def level_class
@@ -34,6 +34,10 @@ class Task < ActiveRecord::Base
 
   def tooltip
     "Entry created: #{created_at} (#{LevelTooltips[level-1]})"
+  end
+
+  def is_action?
+    level == 1
   end
 
   private
